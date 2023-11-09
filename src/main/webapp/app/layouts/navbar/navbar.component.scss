@@ -1,36 +1,49 @@
-@import '~bootstrap/scss/functions';
-@import '~bootstrap/scss/variables';
-
 /* ==========================================================================
-Navbar
+Main page styles
 ========================================================================== */
 
-.navbar-version {
-  font-size: 0.65em;
-  color: $navbar-dark-color;
-}
-
-.profile-image {
-  height: 1.75em;
-  width: 1.75em;
-}
-
-.navbar {
-  padding: 0.2rem 1rem;
-
-  a.nav-link {
-    font-weight: 400;
-  }
-}
-
-/* ==========================================================================
-Logo styles
-========================================================================== */
-.logo-img {
-  height: 45px;
-  width: 45px;
+.hipster {
   display: inline-block;
-  vertical-align: middle;
-  background: url('../../../content/images/logo-jhipster.png') no-repeat center center;
+  width: 347px;
+  height: 497px;
+  background: url('../../content/images/jhipster_family_member_0.svg') no-repeat center top;
   background-size: contain;
 }
+
+/* wait autoprefixer update to allow simple generation of high pixel density media query */
+@media only screen and (-webkit-min-device-pixel-ratio: 2),
+only screen and (-moz-min-device-pixel-ratio: 2),
+only screen and (-o-min-device-pixel-ratio: 2/1),
+only screen and (min-resolution: 192dpi),
+only screen and (min-resolution: 2dppx) {
+  .hipster {
+    background: url('../../content/images/jhipster_family_member_0.svg') no-repeat center top;
+    background-size: contain;
+  }
+}
+.carousel-with-margin {
+  margin-left: 20px; /* Ajustez la valeur de la marge à gauche selon vos besoins */
+}
+/* Ajouter ces styles à votre fichier CSS ou balise <style> si nécessaire */
+.carousel-control-prev, .carousel-control-next {
+  font-size: 30px; /* Ajustez la taille selon vos préférences */
+  color: #000; /* Couleur des flèches */
+  background: rgba(255, 255, 255, 0.5); /* Couleur de fond des flèches */
+  border-radius: 50%; /* Rendre les flèches circulaires */
+  width: 50px; /* Largeur des flèches */
+  height: 50px; /* Hauteur des flèches */
+  line-height: 50px; /* Ajuster la ligne centrale verticalement */
+}
+
+.carousel-control-prev-icon, .carousel-control-next-icon {
+  background-color: #000; /* Couleur des flèches */
+}
+/* styles.css (ou .scss) */
+
+.product-list-container {
+  margin-top: 20px; /* Marge en haut */
+  margin-right: 20px; /* Marge à droite */
+  margin-bottom: 20px; /* Marge en bas */
+  margin-left: 20px; /* Marge à gauche */
+}
+

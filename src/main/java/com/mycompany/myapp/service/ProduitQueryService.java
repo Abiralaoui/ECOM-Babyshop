@@ -1,6 +1,6 @@
 package com.mycompany.myapp.service;
 
-import com.mycompany.myapp.domain.*;
+import com.mycompany.myapp.domain.*; //
 import com.mycompany.myapp.domain.Produit;
 import com.mycompany.myapp.repository.ProduitRepository;
 import com.mycompany.myapp.service.criteria.ProduitCriteria;

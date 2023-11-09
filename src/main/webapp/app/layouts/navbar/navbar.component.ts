@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { SessionStorageService } from 'ngx-webstorage';
-
 import { VERSION } from 'app/app.constants';
 import { LANGUAGES } from 'app/config/language.constants';
 import { Account } from 'app/core/auth/account.model';
@@ -11,12 +10,16 @@ import { LoginService } from 'app/login/login.service';
 import { ProfileService } from 'app/layouts/profiles/profile.service';
 import { EntityNavbarItems } from 'app/entities/entity-navbar-items';
 
+
+
+
 @Component({
   selector: 'jhi-navbar',
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.scss'],
 })
 export class NavbarComponent implements OnInit {
+
   inProduction?: boolean;
   isNavbarCollapsed = true;
   languages = LANGUAGES;
@@ -24,6 +27,8 @@ export class NavbarComponent implements OnInit {
   version = '';
   account: Account | null = null;
   entitiesNavbarItems: any[] = [];
+
+
 
   constructor(
     private loginService: LoginService,
@@ -37,6 +42,7 @@ export class NavbarComponent implements OnInit {
       this.version = VERSION.toLowerCase().startsWith('v') ? VERSION : `v${VERSION}`;
     }
   }
+
 
   ngOnInit(): void {
     this.entitiesNavbarItems = EntityNavbarItems;
@@ -71,5 +77,16 @@ export class NavbarComponent implements OnInit {
 
   toggleNavbar(): void {
     this.isNavbarCollapsed = !this.isNavbarCollapsed;
+  }
+  showCategoryList = false;
+
+  toggleCategoryList() {
+    this.showCategoryList = !this.showCategoryList;
+  }
+  showCartSidebar = false; // Initialisé à false pour masquer la sidebar
+
+  toggleCartSidebar() {
+    this.showCartSidebar = !this.showCartSidebar;
+    console.log(this.showCartSidebar)
   }
 }
