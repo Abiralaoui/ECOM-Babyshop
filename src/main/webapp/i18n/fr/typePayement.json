@@ -1,0 +1,9 @@
+{
+  "mainApp": {
+    "TypePayement": {
+      "null": "",
+      "CB": "CB",
+      "LIQUIDE": "LIQUIDE"
+    }
+  }
+}

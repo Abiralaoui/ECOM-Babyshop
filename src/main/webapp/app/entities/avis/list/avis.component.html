@@ -1,0 +1,114 @@
+<div>
+  <h2 id="page-heading" data-cy="AvisHeading">
+    <span jhiTranslate="mainApp.avis.home.title">Avis</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="mainApp.avis.home.refreshListLabel">Actualiser la liste</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-avis"
+        [routerLink]="['/avis/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="mainApp.avis.home.createLabel"> Créer un nouveau Avis </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="avis?.length === 0">
+    <span jhiTranslate="mainApp.avis.home.notFound">Aucun Avis trouvé</span>
+  </div>
+
+  <div class="table-responsive table-entities" id="entities" *ngIf="avis && avis.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="navigateToWithComponentValues()">
+          <th scope="col" jhiSortBy="id">
+            <div class="d-flex">
+              <span jhiTranslate="global.field.id">ID</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="note">
+            <div class="d-flex">
+              <span jhiTranslate="mainApp.avis.note">Note</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="commentaire">
+            <div class="d-flex">
+              <span jhiTranslate="mainApp.avis.commentaire">Commentaire</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="date">
+            <div class="d-flex">
+              <span jhiTranslate="mainApp.avis.date">Date</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="produit.id">
+            <div class="d-flex">
+              <span jhiTranslate="mainApp.avis.produit">Produit</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="client.id">
+            <div class="d-flex">
+              <span jhiTranslate="mainApp.avis.client">Client</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let avis of avis; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/avis', avis.id, 'view']">{{ avis.id }}</a>
+          </td>
+          <td>{{ avis.note }}</td>
+          <td>{{ avis.commentaire }}</td>
+          <td>{{ avis.date | formatMediumDatetime }}</td>
+          <td>
+            <div *ngIf="avis.produit">
+              <a [routerLink]="['/produit', avis.produit.id, 'view']">{{ avis.produit.id }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="avis.client">
+              <a [routerLink]="['/client', avis.client.id, 'view']">{{ avis.client.id }}</a>
+            </div>
+          </td>
+          <td class="text-end">
+            <div class="btn-group">
+              <button type="submit" [routerLink]="['/avis', avis.id, 'view']" class="btn btn-info btn-sm" data-cy="entityDetailsButton">
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">Voir</span>
+              </button>
+
+              <button type="submit" [routerLink]="['/avis', avis.id, 'edit']" class="btn btn-primary btn-sm" data-cy="entityEditButton">
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Editer</span>
+              </button>
+
+              <button type="submit" (click)="delete(avis)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Supprimer</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

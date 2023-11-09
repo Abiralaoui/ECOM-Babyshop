@@ -1,0 +1,49 @@
+{
+  "applications": ["main"],
+  "changelogDate": "20231109100651",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "commande",
+  "fields": [
+    {
+      "fieldName": "date",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "etat",
+      "fieldType": "EtatCommande",
+      "fieldValues": "EN_COURS,PAYEE,LIVREE,ANNULEE,REMBOURSEE"
+    },
+    {
+      "fieldName": "typePayement",
+      "fieldType": "TypePayement",
+      "fieldValues": "CB,LIQUIDE"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Commande",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "ligneCommande",
+      "otherEntityRelationshipName": "commande",
+      "relationshipName": "ligneCommande",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "carteBancaire",
+      "otherEntityRelationshipName": "commande",
+      "relationshipName": "carteBancaire",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityName": "client",
+      "otherEntityRelationshipName": "commande",
+      "relationshipName": "client",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "serviceClass"
+}

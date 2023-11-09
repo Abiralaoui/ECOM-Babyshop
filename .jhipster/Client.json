@@ -1,0 +1,54 @@
+{
+  "applications": ["main"],
+  "changelogDate": "20231109100951",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "client",
+  "fields": [
+    {
+      "fieldName": "identifiant",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "motDePasse",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "tel",
+      "fieldType": "String",
+      "fieldValidateRules": ["pattern"],
+      "fieldValidateRulesPattern": "[0-9]{10}"
+    },
+    {
+      "fieldName": "address",
+      "fieldType": "String"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Client",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "commande",
+      "otherEntityRelationshipName": "client",
+      "relationshipName": "commande",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "avis",
+      "otherEntityRelationshipName": "client",
+      "relationshipName": "avis",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "carteBancaire",
+      "otherEntityRelationshipName": "client",
+      "ownerSide": true,
+      "relationshipName": "carteBancaire",
+      "relationshipType": "many-to-many"
+    }
+  ],
+  "service": "serviceClass"
+}

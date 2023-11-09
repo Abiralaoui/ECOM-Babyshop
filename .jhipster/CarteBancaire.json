@@ -1,0 +1,46 @@
+{
+  "applications": ["main"],
+  "changelogDate": "20231109100851",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "carte_bancaire",
+  "fields": [
+    {
+      "fieldName": "nomPorteur",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "numCarte",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "dateExpiration",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "cvv",
+      "fieldType": "Integer"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "CarteBancaire",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "commande",
+      "otherEntityRelationshipName": "carteBancaire",
+      "relationshipName": "commande",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "client",
+      "otherEntityRelationshipName": "carteBancaire",
+      "ownerSide": false,
+      "relationshipName": "client",
+      "relationshipType": "many-to-many"
+    }
+  ],
+  "service": "serviceClass"
+}

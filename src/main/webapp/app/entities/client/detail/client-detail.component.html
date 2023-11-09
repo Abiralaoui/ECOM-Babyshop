@@ -1,0 +1,51 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="client">
+      <h2 data-cy="clientDetailsHeading"><span jhiTranslate="mainApp.client.detail.title">Client</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ client.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="mainApp.client.identifiant">Identifiant</span></dt>
+        <dd>
+          <span>{{ client.identifiant }}</span>
+        </dd>
+        <dt><span jhiTranslate="mainApp.client.motDePasse">Mot De Passe</span></dt>
+        <dd>
+          <span>{{ client.motDePasse }}</span>
+        </dd>
+        <dt><span jhiTranslate="mainApp.client.tel">Tel</span></dt>
+        <dd>
+          <span>{{ client.tel }}</span>
+        </dd>
+        <dt><span jhiTranslate="mainApp.client.address">Address</span></dt>
+        <dd>
+          <span>{{ client.address }}</span>
+        </dd>
+        <dt><span jhiTranslate="mainApp.client.carteBancaire">Carte Bancaire</span></dt>
+        <dd>
+          <span *ngFor="let carteBancaire of client.carteBancaires; let last = last">
+            <a [routerLink]="['/carte-bancaire', carteBancaire.id, 'view']">{{ carteBancaire.id }}</a
+            >{{ last ? '' : ', ' }}
+          </span>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Retour</span>
+      </button>
+
+      <button type="button" [routerLink]="['/client', client.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editer</span>
+      </button>
+    </div>
+  </div>
+</div>

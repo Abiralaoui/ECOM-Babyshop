@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+    <!--
+        Added the constraints for entity Client.
+    -->
+    <changeSet id="20231109100951-2" author="jhipster">
+
+        <addForeignKeyConstraint baseColumnNames="client_id"
+                                 baseTableName="rel_client__carte_bancaire"
+                                 constraintName="fk_rel_client__carte_bancaire__client_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="client"/>
+
+        <addForeignKeyConstraint baseColumnNames="carte_bancaire_id"
+                                 baseTableName="rel_client__carte_bancaire"
+                                 constraintName="fk_rel_client__carte_bancaire__carte_bancaire_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="carte_bancaire"/>
+    </changeSet>
+</databaseChangeLog>

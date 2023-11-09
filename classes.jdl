@@ -1,0 +1,145 @@
+@filter
+@search(elasticsearch)
+entity Produit {
+	idProduit Integer
+    libelle String
+    description String
+    prixUnitaire Float min(0)
+    taille Integer min(0)
+    couleur String
+}
+
+
+entity Category {
+	idCategory Integer
+    nom String
+}
+
+relationship ManyToMany {
+	Produit to Category
+}
+
+
+
+entity Image {
+	url String
+}
+
+relationship OneToMany {
+	Produit to Image
+}
+
+
+
+
+
+enum EtatCommande {
+	EN_COURS
+    PAYEE
+    LIVREE
+    ANNULEE
+    REMBOURSEE
+}
+
+enum TypePayement {
+	CB
+	LIQUIDE
+}
+
+entity Commande {
+	date Instant
+    etat EtatCommande
+    typePayement TypePayement
+}
+
+entity LigneCommande {
+	quantite Integer min(0)
+    prix Float min(0)
+}
+
+relationship OneToMany {
+	Commande to LigneCommande
+}
+
+relationship OneToMany {
+	Produit to LigneCommande
+}
+
+
+
+entity CarteBancaire {
+	nomPorteur String
+    numCarte Integer
+    dateExpiration Instant
+    cvv Integer
+}
+
+relationship OneToMany {
+	CarteBancaire to Commande
+}
+
+
+
+entity Client {
+	identifiant String
+    motDePasse String
+	tel String pattern(/[0-9]{10}/)
+    address String
+}
+
+relationship OneToMany {
+	Client to Commande
+}
+
+relationship ManyToMany {
+	Client to CarteBancaire
+}
+
+
+
+
+entity Avis {
+	note Integer min(1) max(5)
+    commentaire String
+    date Instant
+}
+
+relationship OneToMany {
+	Produit to Avis
+}
+
+relationship OneToMany {
+	Client to Avis
+}
+
+
+
+entity Admin {
+	identifiant String
+    motDePasse String
+}
+
+dto * with mapstruct
+
+application {
+	config {
+        applicationType monolith
+
+        authenticationType jwt
+        baseName main
+        buildTool maven
+        cacheProvider ehcache
+        clientFramework angular
+        databaseType sql
+        nativeLanguage fr
+        prodDatabaseType postgresql
+    }
+	entities *
+}
+
+
+
+
+
+
+

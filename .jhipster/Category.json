@@ -1,0 +1,32 @@
+{
+  "applications": ["main"],
+  "changelogDate": "20231109100451",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "category",
+  "fields": [
+    {
+      "fieldName": "idCategory",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "nom",
+      "fieldType": "String"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Category",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "produit",
+      "otherEntityRelationshipName": "category",
+      "ownerSide": false,
+      "relationshipName": "produit",
+      "relationshipType": "many-to-many"
+    }
+  ],
+  "service": "serviceClass"
+}

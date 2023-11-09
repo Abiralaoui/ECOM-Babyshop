@@ -1,0 +1,52 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="avis">
+      <h2 data-cy="avisDetailsHeading"><span jhiTranslate="mainApp.avis.detail.title">Avis</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ avis.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="mainApp.avis.note">Note</span></dt>
+        <dd>
+          <span>{{ avis.note }}</span>
+        </dd>
+        <dt><span jhiTranslate="mainApp.avis.commentaire">Commentaire</span></dt>
+        <dd>
+          <span>{{ avis.commentaire }}</span>
+        </dd>
+        <dt><span jhiTranslate="mainApp.avis.date">Date</span></dt>
+        <dd>
+          <span>{{ avis.date | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="mainApp.avis.produit">Produit</span></dt>
+        <dd>
+          <div *ngIf="avis.produit">
+            <a [routerLink]="['/produit', avis.produit.id, 'view']">{{ avis.produit.id }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="mainApp.avis.client">Client</span></dt>
+        <dd>
+          <div *ngIf="avis.client">
+            <a [routerLink]="['/client', avis.client.id, 'view']">{{ avis.client.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Retour</span>
+      </button>
+
+      <button type="button" [routerLink]="['/avis', avis.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editer</span>
+      </button>
+    </div>
+  </div>
+</div>

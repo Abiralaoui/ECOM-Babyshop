@@ -1,0 +1,52 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="commande">
+      <h2 data-cy="commandeDetailsHeading"><span jhiTranslate="mainApp.commande.detail.title">Commande</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ commande.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="mainApp.commande.date">Date</span></dt>
+        <dd>
+          <span>{{ commande.date | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="mainApp.commande.etat">Etat</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'mainApp.EtatCommande.' + commande.etat }}">{{ commande.etat }}</span>
+        </dd>
+        <dt><span jhiTranslate="mainApp.commande.typePayement">Type Payement</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'mainApp.TypePayement.' + commande.typePayement }}">{{ commande.typePayement }}</span>
+        </dd>
+        <dt><span jhiTranslate="mainApp.commande.carteBancaire">Carte Bancaire</span></dt>
+        <dd>
+          <div *ngIf="commande.carteBancaire">
+            <a [routerLink]="['/carte-bancaire', commande.carteBancaire.id, 'view']">{{ commande.carteBancaire.id }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="mainApp.commande.client">Client</span></dt>
+        <dd>
+          <div *ngIf="commande.client">
+            <a [routerLink]="['/client', commande.client.id, 'view']">{{ commande.client.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Retour</span>
+      </button>
+
+      <button type="button" [routerLink]="['/commande', commande.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editer</span>
+      </button>
+    </div>
+  </div>
+</div>
